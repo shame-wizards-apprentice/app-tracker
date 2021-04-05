@@ -2,7 +2,7 @@
 const axios = require('axios');
 
 // API URL prefix for all endpoints
-const URL_PREFIX = 'https://rns-app-tracker-api.herokuapp.com/'
+const URL_PREFIX = 'https://rns-app-tracker-api.herokuapp.com'
 
 // API endpoints
 const API = {
