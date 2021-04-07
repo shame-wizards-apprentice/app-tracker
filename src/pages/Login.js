@@ -9,12 +9,12 @@ const Login = () => {
         password: ""
     });
 
-    const [userState, setUSerState] = useState({
-        username: "",
-        password: "",
-        token: "",
-        isLoggedIn: false
-    });
+    // const [userState, setUSerState] = useState({
+    //     username: "",
+    //     password: "",
+    //     token: "",
+    //     isLoggedIn: false
+    // });
 
     const handleInputChange = e => {
         const { name, value } = e.target;

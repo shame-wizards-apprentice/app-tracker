@@ -16,8 +16,8 @@ export default function UserForm(props) {
     const classes = useStyles();
     return (
         <form className={classes.root} noValidate autoComplete="off">
-            <TextField id="outlined-basic" label="Username" variant="outlined" onChange={props.handleInputChange} />
-            <TextField id="outlined-basic" label="Password" variant="outlined" onChange={props.handleInputChange} />
+            <TextField id="outlined-basic" label="Username" variant="outlined" name="username" onChange={props.handleInputChange} />
+            <TextField id="outlined-basic" label="Password" variant="outlined" name="password" onChange={props.handleInputChange} />
             <br />
             <Button variant="contained" onClick={props.handleSubmit} >Submit</Button>
         </form>
