@@ -14,7 +14,7 @@ const App = () => {
         <Route exact path={['/signup']}>
           <Signup />
         </Route>
-        <Route exact path={['/Applications']}>
+        <Route exact path={['/applications']}>
           <Applications />
         </Route>
       </Switch>

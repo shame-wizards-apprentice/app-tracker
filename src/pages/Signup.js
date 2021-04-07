@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import {useHistory} from 'react-router-dom';
 import UserForm from '../components/UserForm';
 import API from '../utils/api';
 
 const Signup = () => {
-
+    let history = useHistory()
     const [signupState, setSignupState] = useState({
         username: "",
         password: ""
@@ -39,6 +40,7 @@ const Signup = () => {
                 username: "",
                 password: ""
             });
+            history.push('/applications')
         }).catch(err => {
             setUSerState({
                 username: "",
@@ -47,7 +49,6 @@ const Signup = () => {
                 isLoggedIn: false
             });
             localStorage.removeItem(`token`)
-
             console.error(`Error creating user: ${err.message}`)
         });
     }
