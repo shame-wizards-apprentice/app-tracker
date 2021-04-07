@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {useHistory} from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import UserForm from '../components/UserForm';
 import API from '../utils/api';
 
@@ -10,12 +10,12 @@ const Signup = () => {
         password: ""
     });
 
-    const [userState, setUSerState] = useState({
-        username: "",
-        password: "",
-        token: "",
-        isLoggedIn: false
-    });
+    // const [userState, setUSerState] = useState({
+    //     username: "",
+    //     password: "",
+    //     token: "",
+    //     isLoggedIn: false
+    // });
 
     const handleInputChange = e => {
         const { name, value } = e.target;
@@ -29,25 +29,25 @@ const Signup = () => {
         e.preventDefault();
         API.signup(signupState).then(res => {
             console.log(`Here's your user: ${JSON.stringify(res, null, 2)}`)
-            localStorage.setItem(`token`, res.data.token)
-            setUSerState({
-                username: res.data.user.username,
-                password: res.data.user.password,
-                token: res.data.token,
-                isLoggedIn: true
-            });
+            // setUSerState({
+            //     username: res.data.user.username,
+            //     password: res.data.user.password,
+            //     token: res.data.token,
+            //     isLoggedIn: true
+            // });
             setSignupState({
                 username: "",
                 password: ""
             });
+            localStorage.setItem(`token`, res.data.token);
             history.push('/applications')
         }).catch(err => {
-            setUSerState({
-                username: "",
-                password: "",
-                token: "",
-                isLoggedIn: false
-            });
+            // setUSerState({
+            //     username: "",
+            //     password: "",
+            //     token: "",
+            //     isLoggedIn: false
+            // });
             localStorage.removeItem(`token`)
             console.error(`Error creating user: ${err.message}`)
         });

@@ -11,12 +11,6 @@ const Login = () => {
         password: ""
     });
 
-    const [userState, setUSerState] = useState({
-        username: "",
-        password: "",
-        token: "",
-        isLoggedIn: false
-    });
 
     const handleInputChange = e => {
         const { name, value } = e.target;
@@ -30,25 +24,25 @@ const Login = () => {
         e.preventDefault();
         API.login(loginState).then(res => {
             console.log(`Here's your user: ${JSON.stringify(res, null, 2)}`)
-            localStorage.setItem(`token`, res.data.token)
-            setUSerState({
-                username: res.data.user.username,
-                password: res.data.user.password,
-                token: res.data.token,
-                isLoggedIn: true
-            });
+            // setUSerState({
+            //     username: res.data.user.username,
+            //     password: res.data.user.password,
+            //     token: res.data.token,
+            //     isLoggedIn: true
+            // });
             setLoginState({
                 username: "",
                 password: ""
             });
+            localStorage.setItem(`token`, res.data.token)
             history.push('/applications')
         }).catch(err => {
-            setUSerState({
-                username: "",
-                password: "",
-                token: "",
-                isLoggedIn: false
-            });
+            // setUSerState({
+            //     username: "",
+            //     password: "",
+            //     token: "",
+            //     isLoggedIn: false
+            // });
             localStorage.removeItem(`token`)
             console.error(`Error creating user: ${err.message}`)
         });
