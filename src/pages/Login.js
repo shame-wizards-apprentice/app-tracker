@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import {useHistory} from 'react-router-dom';
 import UserForm from '../components/UserForm';
 import API from '../utils/api';
+import store from '../config/store';
 
 const Login = () => {
     let history = useHistory();
@@ -22,14 +23,15 @@ const Login = () => {
 
     const handleSubmit = e => {
         e.preventDefault();
-        API.login(loginState).then(res => {
-            console.log(`Here's your user: ${JSON.stringify(res, null, 2)}`)
-            // setUSerState({
-            //     username: res.data.user.username,
-            //     password: res.data.user.password,
-            //     token: res.data.token,
-            //     isLoggedIn: true
-            // });
+        API.login(loginState).then(res => {  
+            store.dispatch({
+                type: 'USER_ACTION',
+                payload: {
+                    username: res.data.user.username,
+                    password: res.data.user.password,
+                    isLoggedIn: true
+                }
+            });
             setLoginState({
                 username: "",
                 password: ""
@@ -37,14 +39,16 @@ const Login = () => {
             localStorage.setItem(`token`, res.data.token)
             history.push('/applications')
         }).catch(err => {
-            // setUSerState({
-            //     username: "",
-            //     password: "",
-            //     token: "",
-            //     isLoggedIn: false
-            // });
+            store.dispatch({
+                type: 'USER_ACTION',
+                payload: {
+                    username: "",
+                    password: "",
+                    isLoggedIn: false
+                }
+            });
             localStorage.removeItem(`token`)
-            console.error(`Error creating user: ${err.message}`)
+            console.error(`Error creating user: ${err}`)
         });
     }
 
