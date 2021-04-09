@@ -6,6 +6,9 @@ const URL_PREFIX = 'https://rns-app-tracker-api.herokuapp.com'
 
 // API endpoints
 const API = {
+    wakeup: () => {
+        return axios.get(`${URL_PREFIX}/`)
+    },
     signup: userData => {
         return axios.post(`${URL_PREFIX}/users/new`, userData)
     },
